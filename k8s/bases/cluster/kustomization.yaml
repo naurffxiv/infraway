@@ -5,4 +5,5 @@ commonAnnotations:
   base: cluster
 
 resources:
-- ./sealed-secrets/
+- ./sealed-secrets.yaml
+- ./metrics-server.yaml
