@@ -6,4 +6,3 @@ commonAnnotations:
 
 resources:
 - ./sealed-secrets.yaml
-- ./metrics-server.yaml
