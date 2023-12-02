@@ -1,5 +1,5 @@
 # Query xsmall instance size
-data "civo_size" "xsmall" {
+data "civo_size" "sizes" {
   filter {
     key = "type"
     values = ["kubernetes"]
@@ -34,7 +34,7 @@ resource "civo_kubernetes_cluster" "raidingway" {
   cluster_type = "talos"
   cni = "cilium"
   pools {
-    size = element(data.civo_size.xsmall.sizes, 0).name
-    node_count = 3
+    size = element(data.civo_size.sizes.sizes, 1).name
+    node_count = 2
   }
 }
