@@ -7,3 +7,4 @@ commonAnnotations:
 resources:
 - ../../bases/cluster/
 - ../../bases/findingway/
+- ../../bases/clearingway/

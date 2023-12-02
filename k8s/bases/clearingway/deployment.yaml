@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clearingway
+  namespace: clearingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clearingway
+  template:
+    metadata:
+      labels:
+        app: clearingway
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+      - name: clearingway
+        image: ghcr.io/veraticus/clearingway:sha-ee850b6
+        envFrom:
+        - secretRef:
+            name: env
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL

@@ -35,6 +35,6 @@ resource "civo_kubernetes_cluster" "raidingway" {
   cni = "cilium"
   pools {
     size = element(data.civo_size.xsmall.sizes, 0).name
-    node_count = 2
+    node_count = 3
   }
 }
