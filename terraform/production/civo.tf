@@ -32,6 +32,7 @@ resource "civo_kubernetes_cluster" "raidingway" {
   name = "raidingway"
   firewall_id = civo_firewall.raidingway.id
   cluster_type = "talos"
+  cni = "cilium"
   pools {
     size = element(data.civo_size.xsmall.sizes, 0).name
     node_count = 2
