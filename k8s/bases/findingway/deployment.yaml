@@ -24,8 +24,8 @@ spec:
             name: env
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "256Mi"
+            cpu: "250m"
           limits:
             memory: "1024Mi"
             cpu: "1000m"
