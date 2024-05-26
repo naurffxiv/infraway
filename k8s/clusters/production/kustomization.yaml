@@ -8,3 +8,4 @@ resources:
 - ../../bases/cluster/
 - ../../bases/findingway/
 - ../../bases/clearingway/
+- ../../bases/dividingway/
