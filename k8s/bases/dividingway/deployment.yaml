@@ -20,7 +20,7 @@ spec:
       - name: github
       containers:
       - name: dividingway
-        image: ghcr.io/veraticus/dividingway:sha-ff5f701
+        image: ghcr.io/veraticus/dividingway:sha-2f275ed
         envFrom:
         - secretRef:
             name: env
