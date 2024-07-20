@@ -16,6 +16,8 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+      imagePullSecrets:
+      - name: github
       containers:
       - name: moddingway
         image: ghcr.io/naurffxiv/moddingway:sha-6d6eeff
