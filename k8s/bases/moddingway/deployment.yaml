@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moddingway
+  namespace: moddingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moddingway
+  template:
+    metadata:
+      labels:
+        app: moddingway
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+      - name: moddingway
+        image: ghcr.io/naurffxiv/moddingway:sha-6d6eeff
+        envFrom:
+        - secretRef:
+            name: env
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
