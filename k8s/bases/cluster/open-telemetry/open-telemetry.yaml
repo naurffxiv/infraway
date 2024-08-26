@@ -103,6 +103,7 @@ spec:
           logs:
             log_record:
               - resource.attributes["k8s.daemonset.name"] == "calico-node"
+              - resource.attributes["k8s.daemonset.name"] == "cluster-autoscaler"
               - resource.attributes["k8s.daemonset.name"] == "konnectivity-agent"
 
       service:
