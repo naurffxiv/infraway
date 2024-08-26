@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: moddingway
+  name: app
   namespace: moddingway
 spec:
   replicas: 1
@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
       - name: github
       containers:
-      - name: moddingway
+      - name: app
         image: ghcr.io/naurffxiv/moddingway:app-16e2742
         envFrom:
         - secretRef:
