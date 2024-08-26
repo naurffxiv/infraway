@@ -24,6 +24,9 @@ spec:
         envFrom:
         - secretRef:
             name: env
+        env:
+        - name: DEBUG
+          value: "false"
         resources:
           requests:
             memory: "256Mi"
