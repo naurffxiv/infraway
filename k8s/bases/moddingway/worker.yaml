@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moddingway
+  namespace: moddingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moddingway
+      component: worker
+  template:
+    metadata:
+      labels:
+        app: moddingway
+        component: worker
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      imagePullSecrets:
+      - name: github
+      containers:
+      - name: moddingway
+        image: ghcr.io/naurffxiv/moddingway:worker-14f0eec
+        envFrom:
+        - secretRef:
+            name: env
+        env:
+        - name: DEBUG
+          value: "false"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL

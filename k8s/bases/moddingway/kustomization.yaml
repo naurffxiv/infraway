@@ -7,4 +7,5 @@ commonAnnotations:
 resources:
 - ./namespace.yaml
 - ./sealed-secret.yaml
-- ./deployment.yaml
+- ./app.yaml
+- ./worker.yaml

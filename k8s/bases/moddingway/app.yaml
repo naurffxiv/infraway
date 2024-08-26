@@ -8,10 +8,12 @@ spec:
   selector:
     matchLabels:
       app: moddingway
+      component: app
   template:
     metadata:
       labels:
         app: moddingway
+        component: app
     spec:
       securityContext:
         runAsNonRoot: true
@@ -20,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: moddingway
-        image: ghcr.io/naurffxiv/moddingway:sha-14f0eec
+        image: ghcr.io/naurffxiv/moddingway:app-16e2742
         envFrom:
         - secretRef:
             name: env
