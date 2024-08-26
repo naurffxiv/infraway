@@ -98,15 +98,15 @@ spec:
         pipelines:
           traces:
             receivers: [ otlp ]
-            processors: [ memory_limiter, resourcedetection, batch ]
+            processors: [ resourcedetection, batch ]
             exporters: [ otlp/honeycomb-traces ]
           metrics:
-            receivers: [ otlp, kubeletstats ]
-            processors: [ memory_limiter, resourcedetection, batch ]
+            receivers: [ otlp ]
+            processors: [ resourcedetection, batch ]
             exporters: [ otlp/honeycomb-metrics ]
           logs:
             receivers: [ otlp ]
-            processors: [ memory_limiter, resourcedetection, batch ]
+            processors: [ resourcedetection, batch ]
             exporters: [ otlp/honeycomb-logs ]
     ports:
       jaeger-compact:
