@@ -98,6 +98,12 @@ spec:
           check_interval: 5s
           limit_percentage: 80
           spike_limit_percentage: 25
+        filter/logs:
+          error_mode: ignore
+          logs:
+            log_record:
+              - resource.attributes["k8s.daemonset.name"] == "calico-node"
+              - resource.attributes["k8s.daemonset.name"] == "konnectivity-agent"
 
       service:
         extensions: [ health_check ]
@@ -112,7 +118,7 @@ spec:
             exporters: [ otlp/honeycomb-metrics ]
           logs:
             receivers: [ otlp ]
-            processors: [ memory_limiter, batch ]
+            processors: [ memory_limiter, filter/logs, batch ]
             exporters: [ otlp/honeycomb-logs ]
     ports:
       jaeger-compact:
