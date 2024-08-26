@@ -87,26 +87,30 @@ spec:
             "x-honeycomb-team": "${env:HONEYCOMB_API_KEY}"
             "x-honeycomb-dataset": "logs"
 
-      processors:
-
       extensions:
-        health_check:
-          endpoint: "0.0.0.0:13133"
+        health_check: {}
+
+      processors:
+        batch: {}
+        memory_limiter:
+          check_interval: 5s
+          limit_percentage: 80
+          spike_limit_percentage: 25
 
       service:
         extensions: [ health_check ]
         pipelines:
           traces:
             receivers: [ otlp ]
-            processors: [ batch ]
+            processors: [ memory_limiter, batch ]
             exporters: [ otlp/honeycomb-traces ]
           metrics:
-            receivers: [ otlp ]
-            processors: [ batch ]
+            receivers: [ otlp, kubeletstats ]
+            processors: [ memory_limiter, batch ]
             exporters: [ otlp/honeycomb-metrics ]
           logs:
             receivers: [ otlp ]
-            processors: [ batch ]
+            processors: [ memory_limiter, batch ]
             exporters: [ otlp/honeycomb-logs ]
     ports:
       jaeger-compact:
