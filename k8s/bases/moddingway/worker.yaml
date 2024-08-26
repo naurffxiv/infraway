@@ -21,8 +21,8 @@ spec:
       imagePullSecrets:
       - name: github
       containers:
-      - name: moddingway
-        image: ghcr.io/naurffxiv/moddingway:worker-14f0eec
+      - name: worker
+        image: ghcr.io/naurffxiv/moddingway:worker-16e2742
         envFrom:
         - secretRef:
             name: env
