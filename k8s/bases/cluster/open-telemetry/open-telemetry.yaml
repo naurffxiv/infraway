@@ -60,7 +60,9 @@ spec:
         enabled: true
         includeCollectorLogs: false
       kubernetesAttributes:
-        enabled: false
+        enabled: true
+        extractAllPodLabels: true
+        extractAllPodAnnotations: true
       kubeletMetrics:
         enabled: false
       hostMetrics:
