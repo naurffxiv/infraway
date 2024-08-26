@@ -105,7 +105,7 @@ spec:
             processors: [ memory_limiter, batch ]
             exporters: [ otlp/honeycomb-traces ]
           metrics:
-            receivers: [ otlp, kubeletstats ]
+            receivers: [ otlp ]
             processors: [ memory_limiter, batch ]
             exporters: [ otlp/honeycomb-metrics ]
           logs:
