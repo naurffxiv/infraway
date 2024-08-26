@@ -18,7 +18,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: findingway
-        image: ghcr.io/veraticus/findingway:sha-36331a4
+        image: ghcr.io/veraticus/findingway:sha-e1aed90
         envFrom:
         - secretRef:
             name: env
