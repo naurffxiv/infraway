@@ -20,7 +20,7 @@ spec:
       - name: github
       containers:
       - name: moddingway
-        image: ghcr.io/naurffxiv/moddingway:sha-c404a61
+        image: ghcr.io/naurffxiv/moddingway:sha-14f0eec
         envFrom:
         - secretRef:
             name: env
