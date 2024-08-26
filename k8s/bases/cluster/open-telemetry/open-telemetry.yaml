@@ -98,15 +98,15 @@ spec:
         pipelines:
           traces:
             receivers: [ otlp ]
-            processors: [ resourcedetection, batch ]
+            processors: [ batch ]
             exporters: [ otlp/honeycomb-traces ]
           metrics:
             receivers: [ otlp ]
-            processors: [ resourcedetection, batch ]
+            processors: [ batch ]
             exporters: [ otlp/honeycomb-metrics ]
           logs:
             receivers: [ otlp ]
-            processors: [ resourcedetection, batch ]
+            processors: [ batch ]
             exporters: [ otlp/honeycomb-logs ]
     ports:
       jaeger-compact:
