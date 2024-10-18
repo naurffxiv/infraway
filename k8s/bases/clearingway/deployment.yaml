@@ -18,7 +18,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: clearingway
-        image: ghcr.io/veraticus/clearingway:sha-ac6bce7
+        image: ghcr.io/veraticus/clearingway:sha-df0448b
         envFrom:
         - secretRef:
             name: env
