@@ -22,13 +22,13 @@ spec:
       - name: github
       containers:
       - name: app
-        image: ghcr.io/naurffxiv/moddingway:app-49ea6b7
+        image: ghcr.io/naurffxiv/moddingway:app-52c9776
         envFrom:
         - secretRef:
             name: env
         env:
-        - name: DEBUG
-          value: "false"
+        - name: MODDINGWAY_ENVIRONMENT
+          value: "prod"
         resources:
           requests:
             memory: "256Mi"
