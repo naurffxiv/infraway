@@ -8,4 +8,3 @@ resources:
 - ./namespace.yaml
 - ./sealed-secret.yaml
 - ./app.yaml
-- ./worker.yaml
