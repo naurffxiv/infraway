@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot
+  namespace: findingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: findingway
+      component: bot
+  template:
+    metadata:
+      labels:
+        app: findingway
+        component: bot
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      imagePullSecrets:
+      - name: github
+      containers:
+      - name: bot
+        image: ghcr.io/naurffxiv/findingway/bot:none
+        envFrom:
+        - secretRef:
+            name: env
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+

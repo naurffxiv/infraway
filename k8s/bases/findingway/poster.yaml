@@ -1,24 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: findingway
+  name: poster
   namespace: findingway
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: findingway
+      component: poster
   template:
     metadata:
       labels:
         app: findingway
+        component: poster
     spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+      imagePullSecrets:
+      - name: github
       containers:
-      - name: findingway
-        image: ghcr.io/veraticus/findingway:sha-9a6b116
+      - name: poster
+        image: ghcr.io/naurffxiv/findingway/poster:none
         envFrom:
         - secretRef:
             name: env
@@ -35,3 +39,4 @@ spec:
           capabilities:
             drop:
             - ALL
+

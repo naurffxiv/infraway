@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: findingway
+  namespace: old-findingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: findingway
+  template:
+    metadata:
+      labels:
+        app: findingway
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+      - name: findingway
+        image: ghcr.io/veraticus/findingway:sha-9a6b116
+        envFrom:
+        - secretRef:
+            name: env
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
