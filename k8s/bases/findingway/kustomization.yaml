@@ -14,10 +14,10 @@ resources:
 
 images:
 - name: ghcr.io/naurffxiv/findingway/bot
-  newTag: sha-39cf400
+  newTag: sha-60a42f9
 - name: ghcr.io/naurffxiv/findingway/scraper
-  newTag: sha-39cf400
+  newTag: sha-60a42f9
 - name: ghcr.io/naurffxiv/findingway/pruner
-  newTag: sha-39cf400
+  newTag: sha-60a42f9
 - name: ghcr.io/naurffxiv/findingway/poster
-  newTag: sha-39cf400
+  newTag: sha-60a42f9
