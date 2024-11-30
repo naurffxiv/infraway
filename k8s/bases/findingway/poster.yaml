@@ -22,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: poster
-        image: ghcr.io/naurffxiv/findingway/poster:sha-930b029
+        image: ghcr.io/naurffxiv/findingway/poster:sha-f00da61
         envFrom:
         - secretRef:
             name: env
