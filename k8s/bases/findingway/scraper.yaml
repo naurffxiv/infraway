@@ -22,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: scraper
-        image: ghcr.io/naurffxiv/findingway/scraper:sha-f00da61
+        image: ghcr.io/naurffxiv/findingway/scraper:sha-881b3df
         envFrom:
         - secretRef:
             name: env
