@@ -22,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: pruner
-        image: ghcr.io/naurffxiv/findingway/pruner:sha-ad6adae
+        image: ghcr.io/naurffxiv/findingway/pruner:sha-440d079
         envFrom:
         - secretRef:
             name: env
