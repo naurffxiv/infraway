@@ -22,14 +22,14 @@ spec:
       - name: github
       containers:
       - name: scraper
-        image: ghcr.io/naurffxiv/findingway/scraper:none
+        image: ghcr.io/naurffxiv/findingway/scraper:sha-047e78c
         envFrom:
         - secretRef:
             name: env
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "250m"
+            memory: "128Mi"
+            cpu: "125m"
           limits:
             memory: "1024Mi"
             cpu: "1000m"
