@@ -22,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: bot
-        image: ghcr.io/naurffxiv/findingway/bot:sha-047e78c
+        image: ghcr.io/naurffxiv/findingway/bot:sha-ad6adae
         envFrom:
         - secretRef:
             name: env
