@@ -14,12 +14,12 @@ resources:
 - ./notifier.yaml
 images:
 - name: ghcr.io/naurffxiv/findingway/bot
-  newTag: sha-473dcb0
+  newTag: sha-a3fcb70
 - name: ghcr.io/naurffxiv/findingway/scraper
-  newTag: sha-473dcb0
+  newTag: sha-a3fcb70
 - name: ghcr.io/naurffxiv/findingway/pruner
-  newTag: sha-473dcb0
+  newTag: sha-a3fcb70
 - name: ghcr.io/naurffxiv/findingway/poster
-  newTag: sha-473dcb0
+  newTag: sha-a3fcb70
 - name: ghcr.io/naurffxiv/findingway/notifier
-  newTag: sha-473dcb0
+  newTag: sha-a3fcb70
