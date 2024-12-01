@@ -23,6 +23,26 @@ spec:
       containers:
       - name: pruner
         image: ghcr.io/naurffxiv/findingway/pruner:latest
+        ports:
+        - containerPort: 8080
+          name: health
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: health
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: health
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
         envFrom:
         - secretRef:
             name: env
