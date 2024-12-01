@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  namespace: findingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: findingway
+      component: admin
+  template:
+    metadata:
+      labels:
+        app: findingway
+        component: admin
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      imagePullSecrets:
+      - name: github
+      containers:
+      - name: admin
+        image: ghcr.io/naurffxiv/findingway/admin:latest
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        envFrom:
+        - secretRef:
+            name: env
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  namespace: findingway
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  selector:
+    app: findingway
+    component: admin
