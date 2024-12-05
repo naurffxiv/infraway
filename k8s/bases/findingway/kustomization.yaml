@@ -16,14 +16,14 @@ resources:
 
 images:
 - name: ghcr.io/naurffxiv/findingway/bot
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
 - name: ghcr.io/naurffxiv/findingway/scraper
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
 - name: ghcr.io/naurffxiv/findingway/pruner
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
 - name: ghcr.io/naurffxiv/findingway/poster
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
 - name: ghcr.io/naurffxiv/findingway/notifier
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
 - name: ghcr.io/naurffxiv/findingway/admin
-  newTag: sha-a4ac09a
+  newTag: sha-67e00dc
