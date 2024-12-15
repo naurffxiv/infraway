@@ -1,53 +1,53 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: strip-admin-prefix
-  namespace: findingway
-spec:
-  stripPrefix:
-    prefixes:
-      - /admin
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: strip-receiver-prefix
-  namespace: findingway
-spec:
-  stripPrefix:
-    prefixes:
-      - /receiver
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: findingway
-  namespace: findingway
-spec:
-  entryPoints:
-    - websecure
-  tls:
-    secretName: tls
-  routes:
-    - match: Host(`findingway.io`) && PathPrefix(`/admin`)
-      kind: Rule
-      priority: 20
-      services:
-        - name: admin
-          port: 3000
-      middlewares:
-        - name: strip-admin-prefix
-    - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
-      kind: Rule
-      priority: 10
-      services:
-        - name: receiver
-          port: 3000
-      middlewares:
-        - name: strip-receiver-prefix
-    - match: Host(`findingway.io`)
-      kind: Rule
-      priority: 1
-      services:
-        - name: site
-          port: 3000
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: strip-admin-prefix
+#   namespace: findingway
+# spec:
+#   stripPrefix:
+#     prefixes:
+#       - /admin
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: Middleware
+# metadata:
+#   name: strip-receiver-prefix
+#   namespace: findingway
+# spec:
+#   stripPrefix:
+#     prefixes:
+#       - /receiver
+# ---
+# apiVersion: traefik.io/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: findingway
+#   namespace: findingway
+# spec:
+#   entryPoints:
+#     - websecure
+#   tls:
+#     secretName: tls
+#   routes:
+#     - match: Host(`findingway.io`) && PathPrefix(`/admin`)
+#       kind: Rule
+#       priority: 20
+#       services:
+#         - name: admin
+#           port: 3000
+#       middlewares:
+#         - name: strip-admin-prefix
+#     - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
+#       kind: Rule
+#       priority: 10
+#       services:
+#         - name: receiver
+#           port: 3000
+#       middlewares:
+#         - name: strip-receiver-prefix
+#     - match: Host(`findingway.io`)
+#       kind: Rule
+#       priority: 1
+#       services:
+#         - name: site
+#           port: 3000

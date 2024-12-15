@@ -6,7 +6,7 @@ metadata:
   namespace: kube-system
 spec:
   interval: 1m0s
-  url:  https://traefik.github.io/traefik-helm-chart
+  url:  https://traefik.github.io/charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
