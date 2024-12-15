@@ -6,4 +6,4 @@ commonAnnotations:
 
 resources:
   - ./cert-manager.yaml
-#  - ./cloudflare-issuer.yaml
+  - ./cloudflare-issuer.yaml
