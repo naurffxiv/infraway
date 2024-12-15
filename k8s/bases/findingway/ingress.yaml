@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  namespace: findingway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: traefik
+        image: traefik:v3.2.2
+        args:
+        - --api.insecure=false
+        - --providers.kubernetesingress=true
+        - --providers.kubernetescrd=true
+        - --entrypoints.web.address=:80
+        ports:
+        - name: web
+          containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            cpu: "300m"
+            memory: "150Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  namespace: findingway
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: web
+    protocol: TCP
+    name: web
+  selector:
+    app: traefik
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: findingway
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: findingway-strip-prefix@kubernetescrd
+spec:
+  tls:
+  - hosts:
+    - findingway.io
+    secretName: tls
+  rules:
+  - host: findingway.io
+    http:
+      paths:
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: admin
+            port:
+              number: 3000
+      - path: /receiver
+        pathType: Prefix
+        backend:
+          service:
+            name: receiver
+            port:
+              number: 3000
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: site
+            port:
+              number: 3000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-prefix
+  namespace: findingway
+spec:
+  stripPrefix:
+    prefixes:
+      - /admin
+      - /receiver
