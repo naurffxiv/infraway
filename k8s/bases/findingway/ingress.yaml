@@ -1,63 +1,53 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
 metadata:
-  name: traefik
+  name: strip-admin-prefix
   namespace: findingway
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: traefik
-  template:
-    metadata:
-      labels:
-        app: traefik
-    spec:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65532
-      containers:
-      - name: traefik
-        image: traefik:v3.2.2
-        args:
-        - --api.insecure=false
-        - --providers.kubernetesingress=true
-        - --providers.kubernetescrd=true
-        - --entrypoints.web.address=:80
-        ports:
-        - name: web
-          containerPort: 80
-        readinessProbe:
-          httpGet:
-            path: /ping
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /ping
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "50Mi"
-          limits:
-            cpu: "300m"
-            memory: "150Mi"
+  stripPrefix:
+    prefixes:
+      - /admin
 ---
-apiVersion: v1
-kind: Service
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
 metadata:
-  name: traefik
+  name: strip-receiver-prefix
   namespace: findingway
 spec:
-  type: ClusterIP
-  ports:
-  - port: 80
-    targetPort: web
-    protocol: TCP
-    name: web
-  selector:
-    app: traefik
+  stripPrefix:
+    prefixes:
+      - /receiver
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: findingway
+  namespace: findingway
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: tls
+  routes:
+    - match: Host(`findingway.io`) && PathPrefix(`/admin`)
+      kind: Rule
+      priority: 20
+      services:
+        - name: admin
+          port: 3000
+      middlewares:
+        - name: strip-admin-prefix
+    - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
+      kind: Rule
+      priority: 10
+      services:
+        - name: receiver
+          port: 3000
+      middlewares:
+        - name: strip-receiver-prefix
+    - match: Host(`findingway.io`)
+      kind: Rule
+      priority: 1
+      services:
+        - name: site
+          port: 3000
