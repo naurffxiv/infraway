@@ -5,6 +5,7 @@ metadata:
   name: external-dns
   namespace: kube-system
 spec:
+  type: "oci"
   interval: 1m0s
   url: oci://registry-1.docker.io/bitnamicharts/external-dns
 ---

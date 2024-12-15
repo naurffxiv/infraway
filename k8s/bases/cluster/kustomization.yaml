@@ -9,3 +9,4 @@ resources:
 - ./sealed-secret.yaml
 - ./open-telemetry
 - ./external-dns
+- ./cert-manager
