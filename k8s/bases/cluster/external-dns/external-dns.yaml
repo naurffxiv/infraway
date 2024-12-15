@@ -26,9 +26,16 @@ spec:
         name: external-dns
   values:
     provider: cloudflare
+    domainFilters:
+      - findingway.io
     env:
-      - name: CF_API_TOKEN
+      - name: CF_API_KEY
         valueFrom:
           secretKeyRef:
             name: cloudflare
-            key: cloudflare_api_token
+            key: cloudflare_api_key
+      - name: CF_API_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare
+            key: cloudflare_api_email
