@@ -5,7 +5,4 @@ commonAnnotations:
   base: cluster
 
 resources:
-- ./sealed-secrets.yaml
-- ./sealed-secret.yaml
-- ./open-telemetry
-- ./external-dns
+  - ./external-dns.yaml
