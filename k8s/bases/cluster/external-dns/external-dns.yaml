@@ -5,9 +5,8 @@ metadata:
   name: external-dns
   namespace: kube-system
 spec:
-  type: "oci"
   interval: 1m0s
-  url: oci://registry-1.docker.io/bitnamicharts/external-dns
+  url: https://kubernetes-sigs.github.io/external-dns/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -21,11 +20,15 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: 8.7.0
+      version: 1.15.0
       sourceRef:
         kind: HelmRepository
         name: external-dns
   values:
     provider: cloudflare
-    cloudflare:
-      secretName: cloudflare
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-token
+          key: cloudflare
