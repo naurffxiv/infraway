@@ -10,3 +10,4 @@ resources:
 - ./open-telemetry
 - ./external-dns
 - ./cert-manager
+- ./vultr-ccm
