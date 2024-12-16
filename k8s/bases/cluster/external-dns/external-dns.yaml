@@ -32,6 +32,8 @@ spec:
       - traefik-proxy
     extraArgs:
       - --traefik-disable-legacy
+    policy: sync
+    txtOwnerID: infraway
     rbac:
       create: true
       additionalPermissions:
