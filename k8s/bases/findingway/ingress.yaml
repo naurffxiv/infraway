@@ -28,6 +28,7 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
     - match: Host(`findingway.io`) && PathPrefix(`/admin`)
       kind: Rule

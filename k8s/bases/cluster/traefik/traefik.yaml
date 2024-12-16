@@ -36,8 +36,6 @@ spec:
     ingressClass:
       enabled: true
       isDefaultClass: true
-    additionalArguments:
-      - "--entrypoints.websecure.address=:0"
     service:
       enabled: true
       type: LoadBalancer
@@ -54,4 +52,9 @@ spec:
         asDefault: true
         port: 8000
         exposedPort: 80
+        protocol: TCP
+      websecure:
+        asDefault: true
+        port: 8443
+        exposedPort: 443
         protocol: TCP
