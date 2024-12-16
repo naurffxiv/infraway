@@ -40,11 +40,13 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: findingway.io
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "https"
-        service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
-        service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
-        service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
+        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "tcp"
       ports:
+        websecure:
+          port: 443
+          expose: true
+          exposedPort: 443
+          protocol: TCP
         web:
           port: 80
           expose: true
