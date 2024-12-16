@@ -13,6 +13,7 @@ resources:
 - ./poster.yaml
 - ./pruner.yaml
 - ./receiver.yaml
+- ./scraper.yaml
 - ./site.yaml
 - ./ingress.yaml
 - ./seeder.yaml
