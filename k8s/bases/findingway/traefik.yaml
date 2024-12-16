@@ -63,6 +63,8 @@ spec:
           ports:
             - name: http
               containerPort: 8000
+            - name: https
+              containerPort: 8000
           securityContext:
             capabilities:
               drop:
@@ -97,5 +99,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 443
+      targetPort: https
+      protocol: TCP
+      name: https
   selector:
     app: traefik
