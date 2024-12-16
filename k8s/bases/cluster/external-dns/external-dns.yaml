@@ -30,6 +30,8 @@ spec:
       - findingway.io
     sources:
       - traefik-proxy
+      - ingress
+      - service
     extraArgs:
       - --traefik-disable-legacy
     policy: sync
