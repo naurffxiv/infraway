@@ -47,13 +47,14 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: findingway.io
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "https"
-        service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
+        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "tcp"
+        service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "tcp"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
         service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
         service.beta.kubernetes.io/vultr-loadbalancer-hostname: "findingway.io"
+        service.beta.kubernetes.io/vultr-loadbalancer-proxy-protocol: "true"
     ports:
       web:
         asDefault: true
