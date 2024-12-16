@@ -47,6 +47,7 @@ spec:
         service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
         service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
+        service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
     ports:
       web:
         asDefault: true
