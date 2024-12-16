@@ -54,7 +54,7 @@ spec:
           image: traefik:v3.2.3
           args:
             - --entrypoints.web.address=:8000
-            - --entrypoints.websecure.address=:0
+            - --entrypoints.websecure.address=:8443
             - --providers.kubernetescrd
             - --providers.kubernetescrd.ingressclass=findingway
             - --providers.kubernetesingress=false
@@ -64,7 +64,7 @@ spec:
             - name: http
               containerPort: 8000
             - name: https
-              containerPort: 8000
+              containerPort: 8443
           securityContext:
             capabilities:
               drop:
