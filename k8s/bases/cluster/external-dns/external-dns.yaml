@@ -36,6 +36,12 @@ spec:
       - apiGroups: ["traefik.containo.us","traefik.io"]
         resources: ["ingressroutes", "ingressroutetcps", "ingressrouteudps"]
         verbs: ["get","watch","list"]
+      - apiGroups: [""]
+        resources: ["services","endpoints","pods"]
+        verbs: ["get","watch","list"]
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["list","watch"]
     env:
       - name: CF_API_KEY
         valueFrom:
