@@ -30,7 +30,7 @@ spec:
         enabled: false
     logs:
       general:
-        level: DEBUG  # Temporarily increase log level for debugging
+        level: INFO
     ingressClass:
       enabled: true
       isDefaultClass: true
