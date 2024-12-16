@@ -28,6 +28,8 @@ spec:
     provider: cloudflare
     domainFilters:
       - findingway.io
+    sources:
+      - traefik-proxy
     env:
       - name: CF_API_KEY
         valueFrom:
