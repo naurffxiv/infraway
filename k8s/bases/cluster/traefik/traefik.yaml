@@ -36,6 +36,7 @@ spec:
       type: LoadBalancer
       annotations:
         external-dns.alpha.kubernetes.io/hostname: findingway.io
+        external-dns.alpha.kubernetes.io/target: findingway.io
         service.beta.kubernetes.io/vultr-loadbalancer-protocol: "http"
         service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
