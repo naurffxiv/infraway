@@ -30,6 +30,12 @@ spec:
       - findingway.io
     sources:
       - traefik-proxy
+    rbac:
+      create: true
+      additionalPermissions:
+      - apiGroups: ["traefik.containo.us","traefik.io"]
+        resources: ["ingressroutes", "ingressroutetcps", "ingressrouteudps"]
+        verbs: ["get","watch","list"]
     env:
       - name: CF_API_KEY
         valueFrom:
