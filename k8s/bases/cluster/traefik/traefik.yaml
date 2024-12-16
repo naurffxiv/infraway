@@ -30,7 +30,7 @@ spec:
         enabled: false
     logs:
       general:
-        level: DEBUG  # Temporarily increase log level for debugging
+        level: INFO
     ingressClass:
       enabled: true
       isDefaultClass: true
@@ -39,7 +39,7 @@ spec:
       type: LoadBalancer
       annotations:
         external-dns.alpha.kubernetes.io/hostname: findingway.io
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         service.beta.kubernetes.io/vultr-loadbalancer-protocol: "https"
         service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
         service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
