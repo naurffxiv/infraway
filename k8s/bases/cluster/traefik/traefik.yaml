@@ -31,6 +31,8 @@ spec:
     logs:
       general:
         level: INFO
+      access:
+        enabled: true
     ingressClass:
       enabled: true
       isDefaultClass: true
@@ -40,18 +42,13 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: findingway.io
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "http"
+        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "https"
         service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
-      ports:
-        websecure:
-          port: 443
-          expose: true
-          exposedPort: 443
-          protocol: TCP
-        web:
-          port: 80
-          expose: true
-          exposedPort: 80
-          protocol: TCP
+    ports:
+      web:
+        asDefault: true
+        port: 8000
+        exposedPort: 80
+        protocol: TCP
