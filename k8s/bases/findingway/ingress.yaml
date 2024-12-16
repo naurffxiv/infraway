@@ -27,6 +27,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   entryPoints:
+    - websecure
     - web
   routes:
     - match: Host(`findingway.io`) && PathPrefix(`/admin`)
