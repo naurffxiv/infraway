@@ -31,3 +31,11 @@ spec:
     logs:
       general:
         level: INFO
+    service:
+      enabled: true
+      type: LoadBalancer
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: findingway.io
+        service.beta.kubernetes.io/vultr-loadbalancer-protocol: "http"
+        service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
+        service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
