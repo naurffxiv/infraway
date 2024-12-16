@@ -30,7 +30,10 @@ spec:
         enabled: false
     logs:
       general:
-        level: INFO
+        level: DEBUG  # Temporarily increase log level for debugging
+    ingressClass:
+      enabled: true
+      isDefaultClass: true
     service:
       enabled: true
       type: LoadBalancer
