@@ -16,7 +16,6 @@ resources:
 - ./receiver.yaml
 - ./site.yaml
 - ./ingress.yaml
-- ./certificate.yaml
 - ./seeder.yaml
 
 images:
