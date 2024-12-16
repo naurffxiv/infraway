@@ -36,6 +36,8 @@ spec:
     ingressClass:
       enabled: true
       isDefaultClass: true
+    additionalArguments:
+      - "--entrypoints.websecure.address=:0"
     service:
       enabled: true
       type: LoadBalancer
@@ -46,6 +48,7 @@ spec:
         service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
+        service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
     ports:
       web:
         asDefault: true
