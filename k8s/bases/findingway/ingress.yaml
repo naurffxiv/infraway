@@ -38,7 +38,7 @@ spec:
       priority: 20
       services:
         - name: admin
-          port: 3000
+          port: 80
       middlewares:
         - name: strip-admin-prefix
     - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
@@ -46,7 +46,7 @@ spec:
       priority: 10
       services:
         - name: receiver
-          port: 3000
+          port: 80
       middlewares:
         - name: strip-receiver-prefix
     - match: Host(`findingway.io`)
@@ -54,4 +54,4 @@ spec:
       priority: 1
       services:
         - name: site
-          port: 3000
+          port: 80

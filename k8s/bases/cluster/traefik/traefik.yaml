@@ -24,3 +24,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: traefik
+  values:
+    ingressRoute:
+      dashboard:
+        enabled: false
+    logs:
+      general:
+        level: INFO
