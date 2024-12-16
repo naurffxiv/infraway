@@ -33,6 +33,11 @@ spec:
         level: INFO
       access:
         enabled: true
+        fields:
+          headers:
+            defaultmode: keep
+            names:
+              Host: keep
     ingressClass:
       enabled: true
       isDefaultClass: true
@@ -48,6 +53,7 @@ spec:
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
         service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
         service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
+        service.beta.kubernetes.io/vultr-loadbalancer-hostname: "findingway.io"
     ports:
       web:
         asDefault: true
