@@ -7,16 +7,17 @@ commonAnnotations:
 resources:
 - ./namespace.yaml
 - ./sealed-secret.yaml
-- ./bot.yaml
-- ./scraper.yaml
-- ./pruner.yaml
-- ./poster.yaml
-- ./notifier.yaml
 - ./admin.yaml
+- ./bot.yaml
+- ./notifier.yaml
+- ./poster.yaml
+- ./pruner.yaml
 - ./receiver.yaml
 - ./site.yaml
 - ./ingress.yaml
 - ./seeder.yaml
+- ./traefik.yaml
+- ./certificate.yaml
 
 images:
 - name: ghcr.io/naurffxiv/findingway/bot

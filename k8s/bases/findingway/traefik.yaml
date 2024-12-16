@@ -1,0 +1,98 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: traefik
+  namespace: findingway
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: traefik
+rules:
+  - apiGroups: [""]
+    resources: ["services", "endpoints", "secrets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["traefik.io"]
+    resources: ["ingressroutes", "ingressroutetcps", "ingressrouteudps", "middlewares", "serverstransports", "tlsoptions", "tlsstores"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: traefik
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: traefik
+subjects:
+  - kind: ServiceAccount
+    name: traefik
+    namespace: findingway
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  namespace: findingway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik
+      containers:
+        - name: traefik
+          image: traefik:v3.0
+          args:
+            - --entrypoints.web.address=:8000
+            - --entrypoints.websecure.address=:0
+            - --providers.kubernetescrd
+            - --providers.kubernetescrd.ingressclass=findingway
+            - --providers.kubernetesingress=false
+            - --log.level=INFO
+            - --accesslog=true
+          ports:
+            - name: http
+              containerPort: 8000
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "300m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  namespace: findingway
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: findingway.io
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    service.beta.kubernetes.io/vultr-loadbalancer-protocol: "https"
+    service.beta.kubernetes.io/vultr-loadbalancer-backend-protocol: "http"
+    service.beta.kubernetes.io/vultr-loadbalancer-ssl: "tls"
+    service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
+    service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
+    service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: traefik
