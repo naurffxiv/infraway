@@ -19,12 +19,22 @@ spec:
       - /receiver
 ---
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: method-post-only
+  namespace: findingway
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Method: "POST"
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: findingway
   namespace: findingway
   annotations:
-    kubernetes.io/ingress.class: findingway
+    kubernetes.io/ingress.class: traefik
 spec:
   entryPoints:
     - web
@@ -38,7 +48,7 @@ spec:
           port: 80
       middlewares:
         - name: strip-admin-prefix
-    - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
+    - match: Host(`findingway.io`) && PathPrefix(`/receiver`) && Method(`POST`)
       kind: Rule
       priority: 10
       services:
@@ -46,6 +56,7 @@ spec:
           port: 80
       middlewares:
         - name: strip-receiver-prefix
+        - name: method-post-only
     - match: Host(`findingway.io`)
       kind: Rule
       priority: 1
