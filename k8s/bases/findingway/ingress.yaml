@@ -48,7 +48,7 @@ spec:
           port: 80
       middlewares:
         - name: strip-admin-prefix
-    - match: Host(`findingway.io`) && PathPrefix(`/receiver`) && Method(`POST`)
+    - match: Host(`findingway.io`) && PathPrefix(`/receiver`)
       kind: Rule
       priority: 10
       services:
@@ -56,7 +56,6 @@ spec:
           port: 80
       middlewares:
         - name: strip-receiver-prefix
-        - name: method-post-only
     - match: Host(`findingway.io`)
       kind: Rule
       priority: 1
