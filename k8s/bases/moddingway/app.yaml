@@ -22,7 +22,7 @@ spec:
       - name: github
       containers:
       - name: app
-        image: ghcr.io/naurffxiv/moddingway:app-ecaff82
+        image: ghcr.io/naurffxiv/moddingway:app-766174e
         envFrom:
         - secretRef:
             name: env
