@@ -92,6 +92,8 @@ metadata:
     service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
     service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
     service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
+    # Reference the TLS cert secret from kube-system namespace
+    service.beta.kubernetes.io/vultr-loadbalancer-ssl-secret: "kube-system/tls"
 spec:
   type: LoadBalancer
   ports:

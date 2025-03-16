@@ -52,3 +52,5 @@ spec:
       services:
         - name: site
           port: 80
+  tls:
+    secretName: tls
