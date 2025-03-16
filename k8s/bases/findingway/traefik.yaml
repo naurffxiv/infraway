@@ -60,6 +60,7 @@ spec:
             - --providers.kubernetesingress=false
             - --log.level=INFO
             - --accesslog=true
+            - --entrypoints.websecure.http.tls=true
           ports:
             - name: http
               containerPort: 8000
@@ -70,6 +71,14 @@ spec:
               drop:
                 - ALL
             readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: tls-cert
+              mountPath: /certs
+              readOnly: true
+      volumes:
+        - name: tls-cert
+          secret:
+            secretName: tls
           resources:
             requests:
               memory: "64Mi"
@@ -92,6 +101,8 @@ metadata:
     service.beta.kubernetes.io/vultr-loadbalancer-ssl-pass-through: "false"
     service.beta.kubernetes.io/vultr-loadbalancer-https-ports: "443"
     service.beta.kubernetes.io/vultr-loadbalancer-ssl-redirect: "true"
+    service.beta.kubernetes.io/vultr-loadbalancer-ssl-secret: "findingway/tls"
+    service.beta.kubernetes.io/vultr-loadbalancer-update-timestamp: "2025-03-16T20:00:00Z"
 spec:
   type: LoadBalancer
   ports:

@@ -2,7 +2,10 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cert
-  namespace: kube-system
+  namespace: findingway
+  annotations:
+    cert-manager.io/issue-temporary-certificate: "true"
+    cert-manager.io/renew-before: "720h"
 spec:
   secretName: tls
   issuerRef:
