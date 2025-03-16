@@ -1,11 +1,9 @@
+
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cert
   namespace: findingway
-  annotations:
-    cert-manager.io/issue-temporary-certificate: "true"
-    cert-manager.io/renew-before: "720h"
 spec:
   secretName: tls
   issuerRef:
@@ -14,3 +12,4 @@ spec:
   dnsNames:
   - findingway.io
   - "*.findingway.io"
+
