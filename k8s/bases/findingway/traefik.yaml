@@ -52,7 +52,7 @@ spec:
       serviceAccountName: traefik
       containers:
         - name: traefik
-          image: traefik:v3.2.3
+          image: traefik:v3.3.4
           args:
             - --entrypoints.web.address=:8000
             - --entrypoints.websecure.address=:8443
