@@ -21,21 +21,21 @@ resources:
 
 images:
 - name: ghcr.io/naurffxiv/findingway/bot
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/pruner
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/poster
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/notifier
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/admin
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/receiver
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/site
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 - name: ghcr.io/naurffxiv/findingway/seeder
-  newTag: sha-917c772
+  newTag: sha-f63f8ec
 
 patches:
 - target:
@@ -44,4 +44,4 @@ patches:
   patch: |-
     - op: replace
       path: /metadata/name
-      value: seeder-917c772
+      value: seeder-f63f8ec
