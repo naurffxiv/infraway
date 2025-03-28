@@ -46,6 +46,9 @@ spec:
         envFrom:
         - secretRef:
             name: env
+        env:
+        - name: FINDINGWAY_PRESERVED_DUTY_IDS
+          value: "1020,1022,1024,1026"
         resources:
           requests:
             memory: "64Mi"
