@@ -48,7 +48,7 @@ spec:
             name: env
         env:
         - name: FINDINGWAY_PRESERVED_DUTY_IDS
-          value: "1022,1024,1026"
+          value: "1024,1026"
         resources:
           requests:
             memory: "64Mi"
