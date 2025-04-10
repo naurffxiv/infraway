@@ -7,7 +7,7 @@ commonAnnotations:
 resources:
 - ./namespace.yaml
 - ./sealed-secret.yaml
-- ./admin.yaml
+#- ./admin.yaml
 - ./bot.yaml
 - ./notifier.yaml
 - ./poster.yaml
